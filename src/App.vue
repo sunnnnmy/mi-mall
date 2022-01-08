@@ -7,12 +7,25 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
+import jsonp from 'jsonp'
 
 export default {
   name: 'App',
   components: {
     HelloWorld
-  }
+  },
+  mounted(){
+    // let url="http://www.easy-mock.com/mock/5b012c1fe6e1035843vdaff/mickapi/table/list"
+    // CORS跨域
+    // axios.get(url).then(()=>{
+    // })
+    //JsonP跨域
+  //  jsonp(url,(err,res)=>{
+  //    let result =res;
+  //    this.data=result;
+  //  })
+  // }
 }
 </script>
 
