@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import jsonp from 'jsonp'
 
 export default {
   name: 'App',
@@ -15,8 +14,8 @@ export default {
   mounted(){
 
      }
-  // }
-}
+
+  }
 </script>
 
 <style>

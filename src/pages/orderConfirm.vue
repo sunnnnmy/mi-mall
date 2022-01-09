@@ -1,16 +1,17 @@
 <template>
     <div>
-        <nav-header></nav-header>
-        <router-view></router-view>
-        <nav-footer></nav-footer>
+        orderConfirm
     </div>
 </template>
 
 <script>
+    
     export default{
-        name:'home'
+        name:'order-confirm'
+        
     }
 </script>
+
 <style>
     
 </style>
