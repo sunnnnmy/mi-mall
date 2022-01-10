@@ -30,6 +30,7 @@ export default{
     clear(key,model_name){
         let val=this.getStorage();
         if (model_name) {
+            if (!val[model_name]) return
             delete val[model_name][key];
         }else{
             delete val[key];
