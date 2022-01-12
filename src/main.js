@@ -3,7 +3,8 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import env from './env'
+import VueLazyLoad from 'vue-lazyload'
+//import env from './env'
 
 //mock开关
 const mock =false;
@@ -15,7 +16,7 @@ axios.defaults.baseURL = '/api';
 axios.defaults.timeout=8000;
 
 //根据不同的环境变量获取不同的请求地址
-axios.defaults.baseURL = env.baseURL; 
+//axios.defaults.baseURL = env.baseURL; 
 /***
  * 接口错误拦截代码
  */
@@ -31,6 +32,9 @@ axios.interceptors.response.use(function(response){
 })
 
 Vue.use(VueAxios,axios)
+Vue.use(VueLazyLoad,{
+  loading:'/imgs/loading-svg/loading-bars.svg'
+})
 Vue.config.productionTip = false
 
 new Vue({
