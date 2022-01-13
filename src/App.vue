@@ -5,16 +5,29 @@
 </template>
 
 <script>
-import storage from './storage'
 export default {
   name: 'App',
   components: {
    
   },
   mounted(){
-    // storage.setItem('a',1)
-    // storage.setItem('user',{a:1},'user')
-    storage.clear('a')
+    this.getUser(),
+    this.getCartCount()
+ },
+ methods:{
+   getUser(){
+     this.axios.get('/user').then((res={})=>{
+       //to-do保存到vuex里
+       this.$store.dispatch('saveUserName',res.username);
+     })
+   },
+   getCartCount(){
+     this.axios.get('/carts/products/sum').then((res=0)=>{
+       //to-do保存到vuex里
+       this.$store.dispatch('saveCartCount',res);
+     })
+
+   }
  }
 
   }

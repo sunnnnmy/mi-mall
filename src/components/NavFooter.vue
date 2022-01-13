@@ -10,7 +10,7 @@
             <a href="" target="_blank">React全家桶课程</a><span>|</span>
             <a href="" target="_blank">微信支付专项课程</a>
         </div>
-        <div class="copyright">Copyright ©2020 <span class="domain"> mi.futurefe.com </span>> Rights Reserved.</div>
+        <div class="copyright">Copyright ©2020 <span class="domain"> mi.futurefe.com </span>Rights Reserved.</div>
     </div>
 </template>
 

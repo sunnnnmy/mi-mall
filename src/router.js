@@ -3,8 +3,9 @@ import Router from 'vue-router'
 import Home from './pages/home'
 import Index from './pages/index'
 import Product from './pages/product'
-import Detail from './pages/detail'
+import Detail from './pages/detail.vue'
 import Cart from './pages/cart'
+import Login from './pages/login'
 import Order from './pages/order'
 import OrderConfirm from './pages/orderConfirm'
 import OrderList from './pages/orderList'
@@ -39,6 +40,11 @@ export default new Router({
             path:'/cart',
             name:'cart',
             component:Cart, 
+        },
+        {
+            path:'/login',
+            name:'login',
+            component:Login, 
         },
         {
             path:'/order',
