@@ -10,7 +10,8 @@
                 </div>
                 <div class="topbar-user">
                     <a href="javascript:;" v-if="username">{{username}}</a>
-                     <a href="javascript:;" v-if="!username"  @click="login()">登录</a>
+                    <a href="javascript:;" v-if="!username"  @click="login()">登录</a>
+                    <a href="javascript:;" v-if="username"  @click="logout()">退出</a>
                     <a href="javascript:;"  v-if="username"> 我的订单</a>
                     <a href="javascript:;" class="my-cart" @click="goToCart()"><span class="icon-cart"></span>购物车({{cartCount}})</a>
                   
@@ -139,11 +140,31 @@
         },
         mounted(){
             this.getProductList();
+            if (this.$route.params&&this.$route.params.from == 'login') {
+                this.getCartCount()
+            }
+            
         },
         methods:{
             login(){
                 this.$router.push('/login')
             },
+            getCartCount(){
+                this.axios.get('/carts/products/sum').then((res=0)=>{
+                //to-do保存到vuex里
+                this.$store.dispatch('saveCartCount',res);
+                })
+
+            },
+            logout(){{
+                this.axios.post('/user/logout').then(()=>{
+                    this.$message.success("退出成功");
+                    this.$cookie.set('userId','',{expires:'-1'});
+                    this.$store.dispatch('saveUserName','');
+                    this.$store.dispatch('saveCartCount','0');
+                   
+                })
+            }},
             getProductList(){
                 this.axios.get('/products',{
                     params:{
@@ -199,33 +220,7 @@
                 height: 112px;
                 @include flex();
                 position: relative;
-              .header-logo{
-                  display: inline-block;
-                  width: 55px;
-                  height: 55px;
-                  background-color: #ff6600;
-                  a{
-                      display: inline-block;
-                      width: 110px;
-                      height: 55px;
-                      &:before{
-                          content: '';
-                          @include bgImg(55px,55px,'/imgs/mi-logo.png',55px);
-                          transition: margin 0.2s;
-                      }
-                      &:after{
-                          content: '';
-                          @include bgImg(55px,55px,'/imgs/mi-home.png',55px);
-                        
-                      }
-                      &:hover:before{
-                          margin-left: -55px;
-                          transition: margin 0.2s;
-                      }
-
-
-                  }
-              }
+              
               .header-menu{
                   display: inline-block;
                   padding-left: 209px;

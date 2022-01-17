@@ -30,6 +30,7 @@
 </template>
 
 <script>
+    import { Message } from 'element-ui'
     export default{
         name:'login',
         data(){
@@ -46,10 +47,14 @@
                     username,
                     password
                 }).then((res)=>{
-                    this.$cookie.set('userId',res.id,{expires:'1M'});
+                    this.$cookie.set('userId',res.id,{expires:'Session'});
                     this.$store.dispatch('saveUserName',res.username);
                     //to-do 保存用户名
-                    this.$router.push('/index');
+                    this.$router.push({
+                        name:'index',
+                        params:{
+                            from:'login'
+                        }});
                 })
             },
             register(){
@@ -58,7 +63,7 @@
                     password:'admin1',
                     email:'admin1@163.com'
                 }).then(()=>{
-                    alert('注册成功')
+                    Message.success('注册成功')
                     //to-do 保存用户名
                 })
             }
