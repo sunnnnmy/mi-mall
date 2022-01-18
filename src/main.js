@@ -41,7 +41,12 @@ axios.interceptors.response.use(function(response){
    Message.warning(res.msg);
     return Promise.reject(res);
   }
-})
+},((err)=>{
+  let res = err.response;
+  // console.log(res);
+  Message.error(res.data.message);
+  return Promise.reject(err);
+}))
 Vue.use(VueCookie)
 Vue.use(VueAxios,axios)
 Vue.use(Message)
